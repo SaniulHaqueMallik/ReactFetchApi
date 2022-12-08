@@ -1,25 +1,45 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+// import  Axios  from 'axios';
+import { useEffect, useState } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+  const[posts,setPosts]=useState([]);
+
+  const fetchPost= async ()=>{
+    const response= await fetch("https://all-the-weather.herokuapp.com/cities");
+    const data= await response.json();
+    setPosts(data.items);
+
+  }; 
+  useEffect(()=>{
+    fetchPost();})
+
+return(<div className='App'>
+    <table >
+    <thead>
+        <tr>
+            <th> Post ID </th>
+            <th> Name of city </th>
+            <th> Region Code </th>
+            <th> Country Code </th>
+        </tr>
+    </thead>
+        <tbody>
+            {posts.map((post)=>(
+                <tr>
+                    <td> {post.id} </td> 
+                    <td> {post.name}</td>
+                    <td> {post.regionCode}</td> 
+                    <td> {post.countryCode}</td>            
+                </tr>
+            ))}
+            </tbody>
+            </table>
+        </div>
+    )
+
+            }
 
 export default App;
+
