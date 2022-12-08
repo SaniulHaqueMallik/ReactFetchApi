@@ -20,9 +20,9 @@ return(<div className='App'>
     <thead>
         <tr>
             <th> Post ID </th>
-            <th> Name of city </th>
-            <th> Region Code </th>
-            <th> Country Code </th>
+            <th> City Name</th>
+            <th> Region </th>
+            <th> Country</th>
         </tr>
     </thead>
         <tbody>
